@@ -3,9 +3,6 @@
 
 ## This repository contains C++ 11 implementation of the Constrained NMF Model detailed the following article
 
-**Title of the Article:** 
-# FNMF
-
 ## This file contains the guidelines and a detailed description of the execution of the package for the following article
 
 **Title of the Article:** Identification of disease related biomarkers in time varying ‘Omic data: A non-negative matrix factorization aided multi level self organizing map based approach
