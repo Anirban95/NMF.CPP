@@ -3,8 +3,6 @@
 
 ## This repository contains C++ 11 implementation of the Constrained NMF Model detailed the following article
 
-## This file contains the guidelines and a detailed description of the execution of the package for the following article
-
 **Title of the Article:** Identification of disease related biomarkers in time varying ‘Omic data: A non-negative matrix factorization aided multi level self organizing map based approach
 - **Authors:** Anirban Dey<sup>1</sup> , Member, IEEE, Kaushik Das Sharma<sup>1</sup>  , Senior Member, IEEE , Pritha Bhattacharjee <sup>2</sup> Amitava Chatterjee <sup>3</sup> 
 - **Affiliations:**  <sup>1</sup> Department of Applied Physics, University of Calcutta; <sup>2</sup> Department of Environmental Science, University of Calcutta; <sup>3</sup> Department of Electrical Engineering, Jadavpur University, Kolkata
