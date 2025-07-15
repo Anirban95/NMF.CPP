@@ -4,7 +4,7 @@
 ## This repository contains C++ 11 implementation of the Constrained NMF Model detailed the following article
 
 **Title of the Article:** 
-# MO-RSplbestPSO
+# FNMF
 
 ## This file contains the guidelines and a detailed description of the execution of the package for the following article
 
