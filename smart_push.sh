@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 🌱 Smart script to push code to GitHub (handles first time, auto creates repo)
+# 🌱 Smart script to push code to GitHub (handles first time, remote, etc.)
 
 # Colors
 GREEN="\033[1;32m"
@@ -13,21 +13,20 @@ echo -e "${GREEN}📦 Checking git repository...${RESET}"
 if [ ! -d ".git" ]; then
     echo -e "${GREEN}🛠 No git repo found. Initializing...${RESET}"
     git init
+fi
 
-    read -p "📛 Enter new GitHub repo name: " repo_name
-    read -p "🌐 Enter description (optional): " repo_desc
-    read -p "🔒 Make private? (y/n): " is_private
+echo -e "${CYAN}---------------------------------------------${RESET}"
+echo -e "${GREEN}🔍 Checking for remote 'origin'...${RESET}"
 
-    # Create repo on GitHub using GitHub CLI
-    if [ "$is_private" == "y" ] || [ "$is_private" == "Y" ]; then
-        gh repo create "$repo_name" --private --description "$repo_desc" --source=. --remote=origin --push
-    else
-        gh repo create "$repo_name" --public --description "$repo_desc" --source=. --remote=origin --push
-    fi
+remote_url=$(git remote get-url origin 2>/dev/null)
 
-    git branch -M main
+if [ -z "$remote_url" ]; then
+    echo -e "${GREEN}❗ No remote 'origin' found.${RESET}"
+    read -p "🌐 Enter GitHub repository URL (e.g., https://github.com/user/repo.git): " repo_url
+    git remote add origin "$repo_url"
+    echo -e "${GREEN}✅ Remote 'origin' added.${RESET}"
 else
-    echo -e "${GREEN}✅ Git repository exists.${RESET}"
+    echo -e "${GREEN}✅ Remote 'origin' found: $remote_url${RESET}"
 fi
 
 echo -e "${CYAN}---------------------------------------------${RESET}"
@@ -41,6 +40,15 @@ echo -e "${GREEN}✅ Committing...${RESET}"
 git commit -m "$commit_msg"
 
 echo -e "${CYAN}---------------------------------------------${RESET}"
+
+# Ensure branch is called main
+current_branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+
+if [ "$current_branch" != "main" ]; then
+    echo -e "${GREEN}🛠 Setting branch name to 'main'...${RESET}"
+    git branch -M main
+fi
+
 echo -e "${GREEN}🚀 Pushing to GitHub...${RESET}"
 git push -u origin main
 
